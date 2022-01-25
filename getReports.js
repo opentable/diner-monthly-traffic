@@ -15,27 +15,25 @@ function fetchApiV4Data(){
   -Date column is in the same place (see dateColumn below)
 
   */
-  var trafficSsId =  '1-oAbKM-k0qMv0vBnbJVPRJSYd_5Yp6mAU0GimvWGAVg'; // *** Update spreadsheet key here. You can find the key in the URL of the spreadsheet.
-  var trafficSS = SpreadsheetApp.openById(trafficSsId); 
-  var metricsSheetId = 0; // *** Update sheet key here. You can find the sheet key at the end of the URL, after #gid=
-  var metricsSheet = findSheet(trafficSS, 0);
+
+  var trafficSS = SpreadsheetApp.openById(trafficSsId); // trafficSsId is defined in the variables.gs file.
+  var metricsSheet = findSheet(trafficSS, metricsSheetId); // metricsSheetId is defined in the variables.gs file.
 
   var metricsSheetLastRow = metricsSheet.getLastRow();
   var dateColumn = 1;
 
   var dateValues = metricsSheet.getRange(1, dateColumn, metricsSheetLastRow).getValues();
 
-  Logger.log('max: ' +findMaxFirstCellValue(dateValues));
+/*
+*** Here is where you can update the report that you want.
 
-
-
-  
+*/
 
   var request = {
     "reportRequests":
     [
       {
-        "viewId": '101272637',
+        "viewId": viewId, // viewId is defined in the variables.gs file.
         "dateRanges": [
           {
           "startDate": '2021-12-01',
